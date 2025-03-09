@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Warna & Bentuk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #8ED3DB; /* Warna lebih pudar dari #06BBCC */
+            color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px; /* Konten lebih ke atas */
+            padding-bottom: 50px; /* Ada ruang di bawah */
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .option {
+            padding: 15px 25px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: lightgray;
+        }
+        .content {
+            display: none;
+            margin-top: 20px;
+        }
+        /* Warna-warna */
+        .colors-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .red { background-color: red; }
+        .blue { background-color: blue; }
+        .green { background-color: green; }
+        .yellow { background-color: yellow; }
+        .purple { background-color: purple; color: white; }
+        .orange { background-color: orange; }
+        .pink { background-color: pink; }
+        .brown { background-color: brown; color: white; }
+        .black { background-color: black; color: white; }
+
+        /* Gambar belajar menggambar */
+        .drawing-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .drawing-container img {
+            width: 100%;
+            max-width: 600px;
+            border: 3px solid black;
+        }
+        .nav-button {
+            background-color: white;
+            border: 2px solid black;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .back-button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pilih Kegiatan</h1>
+        <div class="options">
+            <div class="option" onclick="showContent('colors')">Belajar Warna</div>
+            <div class="option" onclick="showContent('drawing')">Belajar Menggambar</div>
+        </div>
+
+        <!-- Kotak Warna -->
+        <div id="colors" class="content">
+            <h2>Belajar Warna</h2>
+            <div class="colors-container">
+                <div class="color-box red">Merah</div>
+                <div class="color-box blue">Biru</div>
+                <div class="color-box green">Hijau</div>
+                <div class="color-box yellow">Kuning</div>
+                <div class="color-box purple">Ungu</div>
+                <div class="color-box orange">Oranye</div>
+                <div class="color-box pink">Pink</div>
+                <div class="color-box brown">Coklat</div>
+                <div class="color-box black">Hitam</div>
+            </div>
+        </div>
+
+        <!-- Belajar Menggambar -->
+        <div id="drawing" class="content">
+            <h2>Belajar Menggambar</h2>
+            <p>Ikuti langkah-langkah menggambar!</p>
+            <div class="drawing-container">
+                <button class="nav-button prev" onclick="prevImage()">◀</button>
+                <img id="drawing-image" src="img/gambar1.jpg" alt="Langkah Menggambar">
+                <button class="nav-button next" onclick="nextImage()">▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Kembali -->
+    <a href="belajar.html" class="back-button">← Kembali ke Pilih Materi</a>
+
+    <script>
+        let currentImage = 1;
+        let totalImages = 11;
+
+        function showContent(id) {
+            document.getElementById("colors").style.display = "none";
+            document.getElementById("drawing").style.display = "none";
+            document.getElementById(id).style.display = "block";
+        }
+
+        function nextImage() {
+            if (currentImage < totalImages) {
+                currentImage++;
+                document.getElementById("drawing-image").src = "img/gambar" + currentImage + ".jpg";
+            }
+        }
+
+        function prevImage() {
+            if (currentImage > 1) {
+                currentImage--;
+                document.getElementById("drawing-image").src = "img/gambar" + currentImage + ".jpg";
+            }
+        }
+    </script>
+
+</body>
+</html>
